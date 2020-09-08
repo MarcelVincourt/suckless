@@ -6,8 +6,9 @@ static int centered = 1;                    /* -c option; centers dmenu on scree
 static int min_width = 500;                    /* minimum width when centered */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = { "monospace:size=11", 
-								"Symbola:pixelsize=12:antialias=true:autohint=true",
-								"PowerlineSymbols:pixelsize=12:antialias=true:autohint=true"};
+								//"Noto Color Emoji:pixelsize=11:antialias=true:autohint=true",
+								//"PowerlineSymbols:pixelsize=11:antialias=true:autohint=true"
+								};
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 				/*     fg         bg       */

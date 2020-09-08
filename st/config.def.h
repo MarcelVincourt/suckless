@@ -5,11 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "mononoki Nerd Font:size=12",;
 /* Spare fonts */
 static char *font2[] = {
-	"Symbola:pixelsize=12:antialias=true:autohint=true",
-	"PowerlineSymbols:pixelsize=12:antialias=true:autohint=true",
+	"monospace:size=9",
+	"Symbola:pixelsize=11:antialias=true:autohint=true",
+	"PowerlineSymbols:pixelsize=11:antialias=true:autohint=true",
 };
 
 static int borderpx = 2;

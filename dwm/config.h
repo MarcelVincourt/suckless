@@ -5,10 +5,11 @@ static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=11", 
-										"Noto Color Emoji:pixelsize=11:antialias=true:autohint=true",
-										"PowerlineSymbols:pixelsize=11:antialias=true:autohint=true"};
-static const char dmenufont[]       = "monospace:size=11";
+static const char *fonts[]          = {
+										"mononoki Nerd Font:size=9",
+										"monospace:size=9"
+										};
+static const char dmenufont[]       = "monospace:size=2";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -23,7 +24,7 @@ static const char bo_sel[]			= "#0997b3";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { fg_norm, bg_norm, bo_norm },
-	[SchemeSel]  = { fg_sel, bg_sel,  bo_sel  },
+	[SchemeSel]  = { fg_sel, col_gray3,  bo_sel  },
 };
 /* one half light dark
 0   normal  black       #383a42   #282c34
@@ -39,7 +40,7 @@ static const char *colors[][3]      = {
 */
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -48,7 +49,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Simplicity Studio",   NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -78,7 +80,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", "10", NULL };
 static const char *termcmd[]  = { "st", NULL };
-// xrandr --output eDP-1 --brightness 1
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -93,7 +94,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,             			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -107,6 +108,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ 0, 				XF86XK_MonBrightnessUp,		spawn,		SHCMD("xbacklight -inc 10") },
 	{ 0, 				XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 10") },
+	{ 0, 				XF86XK_AudioMute,			spawn,		SHCMD("pulsemixer --togle-mute ; pkill -RTMIN+10 dwmblocks") },
+	{ 0, 				XF86XK_AudioLowerVolume,	spawn,		SHCMD("pulsemixer --change-volume -5 ; pkill -RTMIN+10 dwmblocks") },
+	{ 0, 				XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pulsemixer --change-volume +5 ; pkill -RTMIN+10 dwmblocks") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
