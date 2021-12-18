@@ -9,7 +9,7 @@ static const char *fonts[]          = {
 										"mononoki Nerd Font:size=9",
 										"monospace:size=9"
 										};
-static const char dmenufont[]       = "monospace:size=2";
+static const char dmenufont[]       = "monospace:size=9";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -83,7 +83,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", "10", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "urxvt", NULL};
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -110,8 +110,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ 0, 				XF86XK_MonBrightnessUp,		spawn,		SHCMD("xbacklight -inc 10") },
-	{ 0, 				XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 10") },
+	{ 0, 				XF86XK_MonBrightnessUp,		spawn,		SHCMD("xbacklight -inc 10 ; pkill -RTMIN+11 dwmblocks") },
+	{ 0, 				XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 10 ; pkill -RTMIN+11 dwmblocks") },
 	{ 0, 				XF86XK_AudioMute,			spawn,		SHCMD("pulsemixer --togle-mute ; pkill -RTMIN+10 dwmblocks") },
 	{ 0, 				XF86XK_AudioLowerVolume,	spawn,		SHCMD("pulsemixer --change-volume -5 ; pkill -RTMIN+10 dwmblocks") },
 	{ 0, 				XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pulsemixer --change-volume +5 ; pkill -RTMIN+10 dwmblocks") },
