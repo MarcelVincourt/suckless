@@ -5,10 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mononoki Nerd Font:size=9";
+static char *font = "JetBrains Mono";
 /* Spare fonts */
 static char *font2[] = {
-	"monospace:size=9"
+	"monospace:size=9",
+	"Symbola:pixelsize=11:antialias=true:autohint=true",
+	"PowerlineSymbols:pixelsize=11:antialias=true:autohint=true",
 };
 
 static int borderpx = 2;
@@ -100,32 +102,22 @@ unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-
-	/* 8 normal colors */
-	[0] =  /*light */ "#fafac7", /* gruvbox "#fbf1c7",*/ /* hard contrast: #f9f5d7 / soft contrast: #f2e5bc */
-	[1] =  /*light */ "#e45649", /* gruvbox "#cc241d",*/ /* red     */
-	[2] =  /*light */ "#50a14f", /* gruvbox "#98971a",*/ /* green   */
-	[3] =  /*light */ "#c18401", /* gruvbox "#d79921",*/ /* yellow  */
-	[4] =  /*light */ "#0184bc", /* gruvbox "#458588",*/ /* blue    */
-	[5] =  /*light */ "#a626a4", /* gruvbox "#b16286",*/ /* magenta */
-	[6] =  /*light */ "#0997b3", /* gruvbox "#689d6a",*/ /* cyan    */
-	[7] =  /*light */ "#383a42", /* gruvbox "#7c6f64",*/ /* white   */
-	/* 8 bright colors */
-	[8]  = /*one half */ "#fafaC7", /*gruvbox "#928374",*/ /* black   */
-	[9]  = /*one half */ "#e45649", /*gruvbox "#9d0006",*/ /* red     */
-	[10] = /*one half */ "#50a14f", /*gruvbox "#79740e",*/ /* green   */
-	[11] = /*one half */ "#c18401", /*gruvbox "#b57614",*/ /* yellow  */
-	[12] = /*one half */ "#0184bc", /*gruvbox "#076678",*/ /* blue    */
-	[13] = /*one half */ "#a626a4", /*gruvbox "#8f3f71",*/ /* magenta */
-	[14] = /*one half */ "#0997b3", /*gruvbox "#427b58",*/ /* cyan    */
-	[15] = /*one half */ "#383a42", /*gruvbox "#3c3836",*/ /* white   */
-
-	[255] = 0,
-
-	
-    "#383a42",
-	"#fafafa",
-
+    "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
+	"#cc241d",
+	"#98971a",
+	"#d79921",
+	"#458588",
+	"#b16286",
+	"#689d6a",
+	"#a89984",
+	"#928374",
+	"#fb4934",
+	"#b8bb26",
+	"#fabd2f",
+	"#83a598",
+	"#d3869b",
+	"#8ec07c",
+	"#ebdbb2",
 };
 
 /*
