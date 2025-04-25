@@ -1,7 +1,7 @@
 
 dwm/dwm
 st/st
-config.h
+#config.h
 
 # Prerequisites
 *.d
