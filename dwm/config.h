@@ -62,8 +62,15 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,  NULL };
 static const char *termcmd[]  = { "st", NULL };
+
+/* Use brighnessctl to use t*/
 static const char *dimmer[] = {"brightnessctl", "set", "10%-", NULL};
 static const char *brighter[] = {"brightnessctl", "set", "10%+", NULL};
+
+/* If you use amixer, use this instead. Thanks go to DaniOrt3ga. */
+static const char *upvol[]      = { "amixer",  "set", "Master", "5%+", NULL };
+static const char *downvol[]    = { "amixer",  "set", "Master", "5%-", NULL };
+static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -93,6 +100,9 @@ static const Key keys[] = {
     // User keys
     {0,                             XF86XK_MonBrightnessDown,   spawn, {.v = dimmer} },
     {0,                             XF86XK_MonBrightnessUp,     spawn, {.v = brighter} },
+    {0,                             XF86XK_AudioMute,           spawn, {.v = mutevol}},
+    {0,                             XF86XK_AudioLowerVolume,    spawn, {.v = downvol}},
+    {0,                             XF86XK_AudioRaiseVolume,    spawn, {.v = upvol}},
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
