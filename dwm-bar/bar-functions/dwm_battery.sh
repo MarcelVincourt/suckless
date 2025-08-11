@@ -3,21 +3,27 @@
 # A dwm_bar function to read the battery level and status
 # GNU GPLv3
 
-dwm_battery () {
-    # Change BAT1 to whatever your battery is identified as. Typically BAT0 or BAT1
-    CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
-    STATUS=$(cat /sys/class/power_supply/BAT1/status)
-
+dwm_battery() {
     printf "%s" "$SEP1"
-    if [ "$IDENTIFIER" = "unicode" ]; then
-        if [ "$STATUS" = "Charging" ]; then
-            printf "🔌 %s%% %s" "$CHARGE" "$STATUS"
+
+    for BAT in /sys/class/power_supply/BAT*; do
+        [ -d "$BAT" ] || continue  # skip if it’s not a directory
+
+        NAME=$(basename "$BAT")
+        CHARGE=$(cat "$BAT/capacity")
+        STATUS=$(cat "$BAT/status")
+
+        if [ "$IDENTIFIER" = "unicode" ]; then
+            if [ "$STATUS" = "Charging" ]; then
+                printf "🔌 %s: %s%% %s  " "$NAME" "$CHARGE" "$STATUS"
+            else
+                printf "🔋 %s: %s%% %s  " "$NAME" "$CHARGE" "$STATUS"
+            fi
         else
-            printf "🔋 %s%% %s" "$CHARGE" "$STATUS"
+            printf "%s %s%% %s  " "$NAME" "$CHARGE" "$STATUS"
         fi
-    else
-        printf "BAT %s%% %s" "$CHARGE" "$STATUS"
-    fi
+    done
+
     printf "%s\n" "$SEP2"
 }
 
